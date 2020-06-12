@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using CodeWriter;
 
-namespace Basic
+namespace CodeWriter.Demo
 {
-    internal class Program
+    using UnityEngine;
+
+    public class DemoClass
     {
-        private static void Main(string[] args)
+        public DemoClass()
         {
             var s = new CodeWriterSettings(CodeWriterSettings.CSharpDefault);
             s.NewLineBeforeBlockBegin = false;
             s.TranslationMapping["`"] = "\"";
 
-            var w = new CodeWriter.CodeWriter(s);
+            var w = new CodeWriter(s);
 
             using (w.B("class Test"))
             {
@@ -37,7 +39,7 @@ namespace Basic
                 "",
             };
 
-            Console.Write(w.ToString());
+            Debug.Log(w.ToString());
         }
     }
 }
