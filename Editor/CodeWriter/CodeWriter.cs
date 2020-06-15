@@ -6,6 +6,8 @@ using System.Text;
 
 namespace CodeWriter
 {
+    using System.Text.RegularExpressions;
+
     public class CodeWriter
     {
         private readonly CodeWriterSettings _settings;
@@ -22,6 +24,11 @@ namespace CodeWriter
             _settings = settings;
             _sb = new StringBuilder();
             _indent = 0;
+        }
+
+        public static string RemoveSpecialCharacters(string str)
+        {
+            return Regex.Replace(str, "[^a-zA-Z0-9_]+", "", RegexOptions.Compiled);
         }
 
         public void WriteRaw(string str = null)
