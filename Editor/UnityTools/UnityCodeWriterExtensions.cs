@@ -10,7 +10,7 @@
             return UnityFileWriter.WriteAssetsContent(path, scriptData.Convert());
         }
 
-        public static bool WriteUnityFile(this string path, string content)
+        public static bool WriteUnityFile(this string content,string path)
         {
             return UnityFileWriter.WriteAssetsContent(path, content);
         }
