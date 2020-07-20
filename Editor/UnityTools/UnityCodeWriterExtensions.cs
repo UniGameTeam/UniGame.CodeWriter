@@ -1,5 +1,6 @@
 ﻿namespace UniModules.UniGame.CodeWriter.Editor.UnityTools
 {
+    using Core.EditorTools.Editor.Tools;
     using global::CodeWriter.Editor.UnityTools;
 
     public static class UnityCodeWriterExtensions
@@ -7,17 +8,17 @@
 
         public static bool CreateScript(this ScriptData scriptData, string path)
         {
-            return UnityFileWriter.WriteAssetsContent(path, scriptData.Convert());
+            return EditorFileUtils.WriteAssetsContent(path, scriptData.Convert());
         }
 
         public static bool WriteUnityFile(this string content,string path)
         {
-            return UnityFileWriter.WriteAssetsContent(path, content);
+            return EditorFileUtils.WriteAssetsContent(path, content);
         }
 
         public static void ReadUnityFile(this string path, out string content, bool createIfNonExists = false)
         {
-            var result = UnityFileWriter.ReadContent(path,createIfNonExists );
+            var result = EditorFileUtils.ReadContent(path,createIfNonExists );
             content = result.content;
         }
     }

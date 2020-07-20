@@ -9,5 +9,8 @@
     "editor",
     "codogen",
     "utils"
-  ]
+  ],
+  "dependencies": {
+    "com.unigame.unicore": "2020.0.1"
+  }
 }
