@@ -11,6 +11,11 @@
             return EditorFileUtils.WriteAssetsContent(path, scriptData.Convert());
         }
 
+        public static bool CreateScript(this string scriptData, string path)
+        {
+            return EditorFileUtils.WriteAssetsContent(path, scriptData);
+        }
+
         public static bool WriteUnityFile(this string content,string path)
         {
             return EditorFileUtils.WriteAssetsContent(path, content);
