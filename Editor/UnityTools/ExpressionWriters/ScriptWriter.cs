@@ -37,9 +37,9 @@ namespace CodeWriter.Editor.UnityTools
                 var staticValue = scriptData.IsStatic ? StaticModifier : String.Empty;
                 var className = CodeWriter.RemoveSpecialCharacters(scriptData.Name);
                 var partial = scriptData.IsPartial ? PartialModifier : String.Empty;
-                var baseClass = string.IsNullOrEmpty(scriptData.BaseReference)
+                var baseClass = scriptData.BaseReferences == null || scriptData.BaseReferences.Count <= 0
                     ? string.Empty
-                    : $": {scriptData.BaseReference}";
+                    : $": {string.Join(", ",scriptData.BaseReferences)}";
                 var serializable = scriptData.IsSerializable ? $"[{nameof(SerializableAttribute)}]" : String.Empty;
 
                 using (writer.B($"{serializable}{publicValue} {staticValue} {partial} class {className} {baseClass}")) {
