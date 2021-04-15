@@ -4,13 +4,13 @@
   "displayName": "UniGame Code Generator Tools",
   "description": "",
   "unity": "2019.2",
-  "version": "2020.1.14",
+  "version": "2020.1.15",
   "keywords": [
     "editor",
     "codogen",
     "utils"
   ],
   "dependencies": {
-    "com.unigame.unicore": "2021.0.3"
+    "com.unigame.unicore": "2021.0.4"
   }
 }
