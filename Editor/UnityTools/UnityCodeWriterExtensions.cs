@@ -1,8 +1,7 @@
-﻿using UniModules.UniCore.Runtime.Utils;
-
-namespace UniModules.UniGame.CodeWriter.Editor.UnityTools
+﻿namespace UniModules.UniGame.CodeWriter.Editor.UnityTools
 {
-    using Core.EditorTools.Editor.Tools;
+    using UniModules.Editor;
+    using UniModules.UniCore.Runtime.Utils;
     using global::CodeWriter.Editor.UnityTools;
 
     public static class UnityCodeWriterExtensions
