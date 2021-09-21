@@ -156,6 +156,10 @@ namespace UnityCodeGen
             AppendIndentation();
 
             AppendAccesType(node.Visibility);
+
+            if(node.IsStatic)
+                Append("static ");
+
             Append(node.Type);
             Append(" ");
             Append(node.Name);
@@ -371,7 +375,7 @@ namespace UnityCodeGen
         protected override void VisitEnumOption(string option)
         {
             AppendIndentation();
-            
+
             Append(option);
             Append(",");
 

@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityCodeGen.Ast;
+﻿using UnityCodeGen.Ast;
 
 namespace UnityCodeGen.Builder
 {
     public class PropertyBuilder
     {
-        public string Name { get { return _name; } }
+        public string Name => _name;
 
         private string _name;
         private string _type;
+
+        private bool _isStatic;
+
         private AccessType _visibility;
         private AccessType _setVisibility;
 
@@ -40,6 +38,12 @@ namespace UnityCodeGen.Builder
             return this;
         }
 
+        public PropertyBuilder IsStatic(bool isStatic)
+        {
+            _isStatic = isStatic;
+            return this;
+        }
+
         public PropertyNode Build()
         {
             return new PropertyNode
@@ -48,6 +52,7 @@ namespace UnityCodeGen.Builder
                 Visibility = _visibility,
                 SetVisibility = _setVisibility,
                 Type = _type,
+                IsStatic = _isStatic
             };
         }
     }
