@@ -186,12 +186,15 @@ namespace UnityCodeGen
 
             if(node.HasSet)
             {
+                AppendIndentation();
+
                 if (node.Visibility != node.SetVisibility)
                     AppendAccesType(node.SetVisibility);
 
                 if (node.HasSetBody || node.HasGetBody)
                 {
-                    AppendLine("set");
+                    Append("set");
+                    AppendLineEnding();
                     AppendLine("{");
                     ++_indentation;
 
