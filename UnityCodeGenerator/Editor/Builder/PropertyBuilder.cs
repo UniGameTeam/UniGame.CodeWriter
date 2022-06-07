@@ -1,18 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityCodeGen.Ast;
+﻿using UnityCodeGen.Ast;
 
 namespace UnityCodeGen.Builder
 {
     public class PropertyBuilder
     {
-        public string Name { get { return _name; } }
+        public string Name => _name;
 
         private string _name;
         private string _type;
+
+        private string _getBody;
+        private string _setBody;
+
+        private bool _isStatic;
+
+        private bool _hasSet = true;
+
         private AccessType _visibility;
         private AccessType _setVisibility;
 
@@ -40,6 +43,30 @@ namespace UnityCodeGen.Builder
             return this;
         }
 
+        public PropertyBuilder IsStatic(bool isStatic)
+        {
+            _isStatic = isStatic;
+            return this;
+        }
+
+        public PropertyBuilder WithGetBody(string body)
+        {
+            _getBody = body;
+            return this;
+        }
+
+        public PropertyBuilder WithSetBody(string body)
+        {
+            _setBody = body;
+            return this;
+        }
+
+        public PropertyBuilder HasSet(bool hasSet)
+        {
+            _hasSet = hasSet;
+            return this;
+        }
+
         public PropertyNode Build()
         {
             return new PropertyNode
@@ -48,6 +75,10 @@ namespace UnityCodeGen.Builder
                 Visibility = _visibility,
                 SetVisibility = _setVisibility,
                 Type = _type,
+                IsStatic = _isStatic,
+                GetBody = _getBody,
+                SetBody = _setBody,
+                HasSet = _hasSet
             };
         }
     }

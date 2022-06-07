@@ -156,18 +156,63 @@ namespace UnityCodeGen
             AppendIndentation();
 
             AppendAccesType(node.Visibility);
+
+            if(node.IsStatic)
+                Append("static ");
+
             Append(node.Type);
             Append(" ");
             Append(node.Name);
-            Append(" ");
-            Append("{ get; ");
+            AppendLineEnding();
 
-            if(node.Visibility != node.SetVisibility)
-                AppendAccesType(node.SetVisibility);
+            AppendLine("{");
+            ++_indentation;
 
-            Append("set; }");
+            if (node.HasGetBody)
+            {
+                AppendLine("get");
+                AppendLine("{");
+                ++_indentation;
+
+                AppendLine(node.GetBody);
+
+                --_indentation;
+                AppendLine("}");
+            }
+            else
+            {
+                AppendLine("get;");
+            }
+
+            if(node.HasSet)
+            {
+                AppendIndentation();
+
+                if (node.Visibility != node.SetVisibility)
+                    AppendAccesType(node.SetVisibility);
+
+                if (node.HasSetBody || node.HasGetBody)
+                {
+                    Append("set");
+                    AppendLineEnding();
+                    AppendLine("{");
+                    ++_indentation;
+
+                    AppendLine(node.SetBody);
+
+                    --_indentation;
+                    AppendLine("}");
+                }
+                else
+                {
+                    AppendLine("set;");
+                }
+            }
 
             base.VisitPropertyNode(node);
+
+            --_indentation;
+            AppendLine("}");
 
             AppendLineEnding();
         }
@@ -371,7 +416,7 @@ namespace UnityCodeGen
         protected override void VisitEnumOption(string option)
         {
             AppendIndentation();
-            
+
             Append(option);
             Append(",");
 
