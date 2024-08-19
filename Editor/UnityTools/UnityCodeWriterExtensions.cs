@@ -12,20 +12,20 @@
                 if (string.IsNullOrEmpty(targetPath))
                     return string.Empty;
 
-                var result = EditorFileUtils.ReadContent(targetPath, false);
+                var result = FileUtils.ReadContent(targetPath, false);
                 return result.content;
             });
 
         public static bool CreateScript(this ScriptData scriptData, string path,bool force = false)
         {
-            var result = EditorFileUtils.WriteAssetsContent(path,scriptData.Convert() );
+            var result = FileUtils.WriteAssetsContent(path,scriptData.Convert() );
 
             return result;
         }
 
         public static bool CreateScript(this string scriptData, string path)
         {
-            return EditorFileUtils.WriteAssetsContent(path, scriptData);
+            return FileUtils.WriteAssetsContent(path, scriptData);
         }
 
         public static bool WriteUnityFile(this string scriptValue,string path,bool force = false)
@@ -38,7 +38,7 @@
             if (!force && scriptValue.Equals(content))
                 return false;
 
-            var result = EditorFileUtils.WriteAssetsContent(path,scriptValue);
+            var result = FileUtils.WriteAssetsContent(path,scriptValue);
             if (result)
                 _fileContentCache[path] = scriptValue;
 
@@ -47,7 +47,7 @@
 
         public static void ReadUnityFile(this string path, out string content, bool createIfNonExists = false)
         {
-            var result = EditorFileUtils.ReadContent(path,createIfNonExists );
+            var result = FileUtils.ReadContent(path,createIfNonExists );
             content = result.content;
         }
     }
